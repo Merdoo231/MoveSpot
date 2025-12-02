@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "my-next-app",
   "version": "0.1.0",
   "private": true,
@@ -22,5 +23,9 @@
     "eslint-config-next": "16.0.6",
     "tailwindcss": "^4",
     "typescript": "^5"
+=======
+  "dependencies": {
+    "firebase": "^12.6.0"
+>>>>>>> 9c84d3e (firebase implementasyonu)
   }
 }
