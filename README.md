@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -34,3 +35,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+=======
+# MoveSpot
+Bu uygulama, kampüs içindeki spor alanlarının doluluk durumlarını anlık olarak gösteren akıllı bir harita sistemidir. Kullanıcılar, hangi spor salonlarının veya açık alanların boş olduğunu görebilir ve kendi gözlemlerini paylaşarak verilerin güncelliğine katkıda bulunabilir.
+>>>>>>> d38560f690e7ca4b9c88772c782660847d8e8d40
