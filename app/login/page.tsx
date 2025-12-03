@@ -108,9 +108,9 @@ export default function LoginPage() {
           <div className="hidden lg:block bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200')] bg-cover bg-center">
             <div className="h-full w-full bg-gradient-to-tr from-indigo-900/40 to-transparent flex items-end p-8">
               <div className="text-white">
-                <h3 className="text-2xl font-semibold">Hoşgeldiniz!</h3>
+                <h3 className="text-2xl font-semibold">Hoş Geldiniz!</h3>
                 <p className="mt-2 text-sm text-white/90 max-w-xs">
-                  Güvenli ve hızlı erişim — hesabınıza giriş yapın veya yeni hesap
+                  Güvenli ve Hızlı Erişim — Hesabınıza giriş yapın veya yeni hesap
                   oluşturun.
                 </p>
               </div>
@@ -125,7 +125,7 @@ export default function LoginPage() {
                   MoveSpot
                 </h1>
                 <p className="text-sm text-white/70">
-                  Hesabınıza güvenli giriş yapın
+                  Hesabınıza Güvenli Giriş Yapın
                 </p>
               </div>
             </div>
@@ -200,7 +200,7 @@ export default function LoginPage() {
 
               <div className="flex items-center gap-3 text-sm text-white/60">
                 <span className="flex-1 border-t border-white/10" />
-                <span className="whitespace-nowrap">veya sosyal hesapla</span>
+                <span className="whitespace-nowrap">veya sosyal hesaplarınızla</span>
                 <span className="flex-1 border-t border-white/10" />
               </div>
 

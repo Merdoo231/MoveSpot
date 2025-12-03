@@ -190,4 +190,56 @@ export function getHistory(
   );
 
   return unsubscribe;
+
+}
+
+export type GymWithLocation = {
+  id: string;
+  name: string;
+  capacity: number;
+  currentCount: number;
+  lat: number;
+  lng: number;
+};
+
+export function subscribeGymsWithLocation(
+  onChange: (gyms: GymWithLocation[]) => void,
+  onError?: (error: FirestoreError) => void
+): () => void {
+  const gymsRef = collection(db, "gyms");
+
+  const unsubscribe = onSnapshot(
+    gymsRef,
+    (snapshot) => {
+      const gyms: GymWithLocation[] = snapshot.docs
+        .map((docSnap) => {
+          const d = docSnap.data() as any;
+
+          if (typeof d.lat !== "number" || typeof d.lng !== "number") {
+            // Koordinatı olmayan salonları haritada göstermiyoruz
+            return null;
+          }
+
+          return {
+            id: docSnap.id,
+            name: typeof d.name === "string" ? d.name : "İsimsiz Salon",
+            capacity:
+              typeof d.capacity === "number" ? d.capacity : 0,
+            currentCount:
+              typeof d.currentCount === "number" ? d.currentCount : 0,
+            lat: d.lat,
+            lng: d.lng,
+          };
+        })
+        .filter((g): g is GymWithLocation => g !== null);
+
+      onChange(gyms);
+    },
+    (error) => {
+      console.error("subscribeGymsWithLocation error:", error);
+      if (onError) onError(error);
+    }
+  );
+
+  return unsubscribe;
 }

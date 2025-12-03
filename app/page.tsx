@@ -154,7 +154,7 @@ export default function MainPage() {
               <h1 className="text-white text-2xl font-bold tracking-tight">
                 MoveSpot
               </h1>
-              <p className="text-sm text-white/70">Kişisel kontrol panelin</p>
+              <p className="text-sm text-white/70">Kişisel Kontrol Panelin</p>
             </div>
           </div>
 
@@ -181,7 +181,7 @@ export default function MainPage() {
         <section className="mb-8">
           <div className="rounded-2xl bg-white/5 border border-white/10 p-6 md:p-8 shadow-xl backdrop-blur-md">
             <h2 className="text-xl md:text-2xl font-semibold text-white mb-2">
-              Hoş geldin, {displayName}
+              Hoş Geldin, {displayName}
             </h2>
             <p className="text-sm md:text-base text-white/70 max-w-2xl">
               Buradan profil bilgilerini görüntüleyebilir, üyelik durumunu
@@ -230,8 +230,8 @@ export default function MainPage() {
               istatistiklerin gelebilir.
             </p>
             <ul className="space-y-2 text-sm text-white/80">
-              <li>• Son giriş: az önce</li>
-              <li>• Hesap durumu: aktif</li>
+              <li>• Son Giriş: az önce</li>
+              <li>• Hesap Durumu: aktif</li>
               <li>• Bildirimler: 0 okunmamış</li>
             </ul>
           </div>
@@ -239,23 +239,32 @@ export default function MainPage() {
           <div className="rounded-2xl bg-white/5 border border-white/10 p-5 shadow-lg backdrop-blur">
             <h3 className="text-white font-semibold mb-3">Hızlı İşlemler</h3>
             <div className="space-y-3">
+        
+              <button
+                type="button"
+                onClick={() => router.push("/map")}
+                className="w-full px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium transition"
+              >
+                Harita Doluluk Oranı Görüntüle
+              </button>
+
               <button
                 type="button"
                 className="w-full px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition"
               >
-                Yeni rezervasyon (placeholder)
+                Yeni Rezervasyon 
               </button>
               <button
                 type="button"
                 className="w-full px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition"
               >
-                Üyelik paketlerini görüntüle (placeholder)
+                Üyelik Paketlerini Görüntüle
               </button>
               <button
                 type="button"
                 className="w-full px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-sm font-medium transition"
               >
-                Destek ile iletişime geç (placeholder)
+                Destek ile İletişime Geç
               </button>
             </div>
           </div>

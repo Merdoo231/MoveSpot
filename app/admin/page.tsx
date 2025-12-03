@@ -314,7 +314,7 @@ export default function AdminPage() {
             <img src="/weight.png" alt="Logo" className="w-10 h-10" />
             <div>
               <h1 className="text-white text-2xl font-bold tracking-tight">
-                moveSpot – Admin Paneli
+                MoveSpot – Admin Paneli
               </h1>
               <p className="text-sm text-white/70">
                 Giriş–çıkış istatistikleri ve doluluk analizi
@@ -582,7 +582,7 @@ export default function AdminPage() {
         </section>
 
         <p className="mt-8 text-center text-xs text-white/40">
-          © 2025 moveSpot – Admin Paneli
+          © 2025 MoveSpot – Admin Paneli
         </p>
       </div>
     </main>
