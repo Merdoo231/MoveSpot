@@ -5,7 +5,10 @@ import { useParams, useRouter } from "next/navigation";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../../../firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { updateOccupancy, canScanAgain } from "../../../../services/firstoreService"
+import {
+  updateOccupancy,
+  canScanAgain,
+} from "../../../../services/firstoreService";
 
 type Status = "loading" | "success" | "error" | "unauth";
 
@@ -35,6 +38,7 @@ export default function GymEnterPage() {
       }
 
       try {
+        // Salon ismini çek
         const gymRef = doc(db, "gyms", gymId);
         const snap = await getDoc(gymRef);
         if (snap.exists()) {
@@ -44,14 +48,18 @@ export default function GymEnterPage() {
           }
         }
 
-        const key = lastScanAt_${gymId}_${user.uid}; 
-        const lastScanStr = typeof window !== "undefined"
-          ? window.localStorage.getItem(key)
-          : null;
+        // Cooldown anahtarı (browser + gym + user bazlı)
+        const key = `lastScanAt_${gymId}_${user.uid}`;
+
+        const lastScanStr =
+          typeof window !== "undefined"
+            ? window.localStorage.getItem(key)
+            : null;
 
         const lastScanAt = lastScanStr ? new Date(lastScanStr) : null;
         const now = new Date();
 
+        // 2 dakikadan önce tekrar okutursa engelle
         if (!canScanAgain(lastScanAt, now, 2 * 60 * 1000)) {
           setStatus("error");
           setMessage(
@@ -60,8 +68,10 @@ export default function GymEnterPage() {
           return;
         }
 
+        // Firestore'da giriş kaydı
         await updateOccupancy(gymId, "IN", user.uid);
 
+        // Cooldown timestamp'ini güncelle
         if (typeof window !== "undefined") {
           window.localStorage.setItem(key, now.toISOString());
         }
