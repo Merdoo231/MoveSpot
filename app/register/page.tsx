@@ -214,7 +214,7 @@ export default function RegisterPage() {
               <div className="text-white">
                 <h3 className="text-2xl font-semibold">Topluluğumuza Katıl</h3>
                 <p className="mt-2 text-sm text-white/90 max-w-xs">
-                  İster bir salon sahibi olun, ister bir üye — güçlü bir profil oluşturun.
+                  İster Bir Salon Sahibi Olun, İster Bir Üye — Güçlü Bir Profil Oluşturun.
                 </p>
               </div>
             </div>
@@ -228,7 +228,7 @@ export default function RegisterPage() {
                   <h1 className="text-white text-2xl font-bold tracking-tight">
                     MoveSpot
                   </h1>
-                  <p className="text-sm text-white/70">Hesap oluştur</p>
+                  <p className="text-sm text-white/70">Hesap Oluştur</p>
                 </div>
               </div>
 
@@ -538,7 +538,7 @@ export default function RegisterPage() {
       </div>
 
       <p className="mt-6 text-center text-xs text-white/40">
-        © 2025 MyCoolWebsite — Tüm hakları saklıdır
+        © 2025 MoveSpot — Tüm hakları saklıdır
       </p>
     </main>
   );
