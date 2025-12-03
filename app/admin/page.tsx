@@ -9,7 +9,7 @@ import {
   getHistory,
   getOccupancy,
   HistoryEntry,
-} from "../../services/firstoreService";
+} from "../../services/firestoreService";
 
 type UserProfile = {
   name?: string;

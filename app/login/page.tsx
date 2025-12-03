@@ -122,7 +122,7 @@ export default function LoginPage() {
               <img src="/weight.png" alt="Logo" className="w-10 h-10" />
               <div>
                 <h1 className="text-white text-2xl font-bold tracking-tight">
-                  MyCoolWebsite
+                  MoveSpot
                 </h1>
                 <p className="text-sm text-white/70">
                   Hesabınıza güvenli giriş yapın
@@ -261,7 +261,7 @@ export default function LoginPage() {
       </div>
 
       <p className="mt-6 text-center text-xs text-white/40">
-        © 2025 MyCoolWebsite — Tüm hakları saklıdır
+        © 2025 MoveSpot — Tüm hakları saklıdır
       </p>
     </main>
   );

@@ -226,7 +226,7 @@ export default function RegisterPage() {
                 <img src="/weight.png" alt="Logo" className="w-10 h-10" />
                 <div>
                   <h1 className="text-white text-2xl font-bold tracking-tight">
-                    MyCoolWebsite
+                    MoveSpot
                   </h1>
                   <p className="text-sm text-white/70">Hesap oluştur</p>
                 </div>

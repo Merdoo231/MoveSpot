@@ -8,7 +8,7 @@ import { doc, getDoc } from "firebase/firestore";
 import {
   updateOccupancy,
   canScanAgain,
-} from "../../../../services/firstoreService";
+} from "../../../../services/firestoreService";
 
 type Status = "loading" | "success" | "error" | "unauth";
 
