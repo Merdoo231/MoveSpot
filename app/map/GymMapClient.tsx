@@ -6,11 +6,11 @@ import { useRouter } from "next/navigation";
 import {
   subscribeGymsWithLocation,
   GymWithLocation,
+  getOccupancyColor,
 } from "../../services/firestoreService";
 
 import "leaflet/dist/leaflet.css";
 
-// react-leaflet bileşenlerini sadece client'ta yükle
 const MapContainer = dynamic(
   () => import("react-leaflet").then((m) => m.MapContainer),
   { ssr: false }
@@ -28,32 +28,18 @@ const Popup = dynamic(
   { ssr: false }
 );
 
-// Doluluk oranına göre marker rengi
-function getOccupancyColor(gym: GymWithLocation): string {
-  if (!gym.capacity || gym.capacity <= 0) return "gray";
-
-  const ratio = gym.currentCount / gym.capacity;
-
-  if (ratio <= 0.3) return "green";    // %0 - %30
-  if (ratio <= 0.6) return "yellow";   // %30 - %60
-  if (ratio <= 0.8) return "orange";   // %60 - %80
-  return "red";                        // %80+
-}
-
 export default function GymMapClient() {
   const [gyms, setGyms] = useState<GymWithLocation[]>([]);
   const [selected, setSelected] = useState<GymWithLocation | null>(null);
 
-  // 🔑 Bu state: haritayı sadece effect çalıştıktan sonra render etmek için
   const [ready, setReady] = useState(false);
 
   const router = useRouter();
 
   useEffect(() => {
-    setReady(true); // Strict Mode'un ilk mount–unmount turu bittikten sonra true olacak
+    setReady(true); 
   }, []);
 
-  // Firestore'dan realtime veri (onSnapshot)
   useEffect(() => {
     const unsub = subscribeGymsWithLocation(setGyms);
     return () => unsub();
@@ -65,7 +51,6 @@ export default function GymMapClient() {
     return [39.92077, 32.85411]; // fallback: Ankara
   }, [gyms, selected]);
 
-  // ⚠️ Henüz "ready" değilken haritayı hiç render etme.
   if (!ready) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-indigo-900 to-sky-800">

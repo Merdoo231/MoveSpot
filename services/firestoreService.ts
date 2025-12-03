@@ -202,6 +202,20 @@ export type GymWithLocation = {
   lng: number;
 };
 
+export function getOccupancyColor(gym: {
+  currentCount: number;
+  capacity: number;
+}): string {
+  if (!gym.capacity || gym.capacity <= 0) return "gray";
+
+  const ratio = gym.currentCount / gym.capacity;
+
+  if (ratio <= 0.3) return "green";   // %0 - %30
+  if (ratio <= 0.6) return "yellow";  // %30 - %60
+  if (ratio <= 0.8) return "orange";  // %60 - %80
+  return "red";                       // %80+
+}
+
 export function subscribeGymsWithLocation(
   onChange: (gyms: GymWithLocation[]) => void,
   onError?: (error: FirestoreError) => void
@@ -216,7 +230,6 @@ export function subscribeGymsWithLocation(
           const d = docSnap.data() as any;
 
           if (typeof d.lat !== "number" || typeof d.lng !== "number") {
-            // Koordinatı olmayan salonları haritada göstermiyoruz
             return null;
           }
 
