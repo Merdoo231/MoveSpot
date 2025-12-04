@@ -4,7 +4,7 @@ import {  SetStateAction, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged, User, signOut } from "firebase/auth";
 import { auth, db } from "../../firebase";
-import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+import { doc, getDoc, collection, getDocs, query, where } from "firebase/firestore";
 import {
   getHistory,
   getOccupancy,
@@ -92,35 +92,46 @@ export default function AdminPage() {
     return () => unsub();
   }, []);
 
-  useEffect(() => {
-    if (status !== "ready") return;
+ useEffect(() => {
+  if (status !== "ready") return;
 
-    setGymsLoading(true);
-    const fetchGyms = async () => {
-      try {
-        const snap = await getDocs(collection(db, "gyms"));
-        const arr: GymSummary[] = snap.docs.map((d) => {
-          const data = d.data() as any;
-          return {
-            id: d.id,
-            name: data.name ?? "Bilinmeyen Salon",
-          };
-        });
-        setGyms(arr);
+  setGymsLoading(true);
 
-        if (arr.length > 0 && !selectedGymId) {
-          setSelectedGymId(arr[0].id);
-        }
-      } catch (err) {
-        console.error(err);
-        setError("Salon listesi alınırken bir hata oluştu.");
-      } finally {
-        setGymsLoading(false);
+  const fetchGyms = async () => {
+    try {
+      const uid = auth.currentUser?.uid;
+      if (!uid) return;
+
+      // Sadece bu kullanıcıya ait salonlar
+      const q = query(collection(db, "gyms"), where("ownerId", "==", uid));
+      const snap = await getDocs(q);
+
+      const arr: GymSummary[] = snap.docs.map((d) => {
+        const data = d.data() as any;
+        return {
+          id: d.id,
+          name: data.name ?? "Bilinmeyen Salon",
+        };
+      });
+
+      setGyms(arr);
+
+      if (arr.length > 0) {
+        setSelectedGymId(arr[0].id);
+      } else {
+        setError("Bu kullanıcıya bağlı salon bulunamadı.");
       }
-    };
 
-    fetchGyms();
-  }, [status, selectedGymId]);
+    } catch (err) {
+      console.error(err);
+      setError("Salon listesi alınırken bir hata oluştu.");
+    } finally {
+      setGymsLoading(false);
+    }
+  };
+
+  fetchGyms();
+}, [status]);
 
   useEffect(() => {
     if (!selectedGymId) return;
